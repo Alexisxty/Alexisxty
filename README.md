@@ -13,8 +13,8 @@
   <b>🎨 Creative Developer | 创意开发者</b><br>
   <b>🚀 Passionate about Technology | 热爱科技</b><br>
   <b>✨ Building the Future | 构建未来</b><br>
-  <b>📈 Cryptocurrency Trading Expert | 加密货币交易专家</b><br>
-  <b>🧠 AI & Large Language Models Researcher | 大模型研究者</b>
+  <b>📈 Cryptocurrency Trading Expert | 加密货币量化交易专家</b><br>
+  <b>🧠 AI & Large Language Models Researcher | 大模型学习&研究者</b>
 </div>
 
 <!-- 个人成就 -->
