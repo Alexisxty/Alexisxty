@@ -12,7 +12,28 @@
   <!-- 个人简介 -->
   <b>🎨 Creative Developer | 创意开发者</b><br>
   <b>🚀 Passionate about Technology | 热爱科技</b><br>
-  <b>✨ Building the Future | 构建未来</b>
+  <b>✨ Building the Future | 构建未来</b><br>
+  <b>📈 Cryptocurrency Trading Expert | 加密货币交易专家</b><br>
+  <b>🧠 AI & Large Language Models Researcher | 大模型研究者</b>
+</div>
+
+<!-- 个人成就 -->
+<div align="center">
+  <h3>🏆 个人成就 | Achievements 🏆</h3>
+  <p>
+    ⭐ 成功预测两次加密货币市场牛熊周期顶底<br>
+    🔬 专注于大语言模型研究与应用<br>
+  </p>
+</div>
+
+<!-- 交易智慧 -->
+<div align="center">
+  <h3>💎 交易智慧 | Trading Wisdom 💎</h3>
+  <blockquote>
+    <p><i>"市场永远是对的，重要的不是你认为市场会怎样，而是市场实际的表现。" - Jesse Livermore</i></p>
+    <p><i>"风险管理比预测更重要。" - Paul Tudor Jones</i></p>
+    <p><i>"耐心等待完美的交易机会，这比匆忙进场更重要。" - Warren Buffett</i></p>
+  </blockquote>
 </div>
 
 <!-- 访问计数器 -->
