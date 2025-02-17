@@ -9,6 +9,9 @@
   <!-- 渐变分割线 -->
   <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=header"/>
 
+  <!-- 博客链接 -->
+  <b>🌐 <a href="https://teeryllm.top/">个人博客 | Personal Blog</a></b><br>
+
   <!-- 个人简介 -->
   <b>🎨 Creative Developer | 创意开发者</b><br>
   <b>🚀 Passionate about Technology | 热爱科技</b><br>
