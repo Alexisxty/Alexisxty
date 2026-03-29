@@ -241,6 +241,37 @@ svg {
     linear-gradient(135deg, rgba(66, 133, 244, 0.08), rgba(52, 168, 83, 0.04));
 }
 
+.hero-haze,
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-haze-sun {
+  inset: -10% -8% 44% 34%;
+  background:
+    radial-gradient(circle at center, rgba(251, 188, 5, 0.22), rgba(255, 244, 214, 0.14) 28%, transparent 62%);
+  filter: blur(18px);
+}
+
+.hero-haze-mist {
+  inset: 22% 24% 12% -12%;
+  background:
+    radial-gradient(circle at center, rgba(66, 133, 244, 0.14), rgba(255, 255, 255, 0) 62%);
+  filter: blur(30px);
+}
+
+.hero-grain {
+  opacity: 0.22;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(circle at 25% 24%, rgba(255, 255, 255, 0.8) 0, transparent 1.2px),
+    radial-gradient(circle at 70% 38%, rgba(66, 133, 244, 0.24) 0, transparent 1px),
+    radial-gradient(circle at 58% 74%, rgba(251, 188, 5, 0.18) 0, transparent 1px);
+  background-size: 140px 140px, 180px 180px, 220px 220px;
+}
+
 .hero-collage {
   position: absolute;
   inset: 20px 26px 220px;
@@ -252,6 +283,7 @@ svg {
   border: 1px solid rgba(66, 133, 244, 0.1);
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 18px 36px rgba(60, 64, 67, 0.1);
+  will-change: transform;
 }
 
 .collage-image {
@@ -263,11 +295,13 @@ svg {
   height: 100%;
   object-fit: cover;
   display: block;
+  object-position: center;
 }
 
 .collage-meta {
   position: absolute;
   inset: auto 16px 16px 16px;
+  max-width: 220px;
   padding: 12px 14px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.82);
@@ -354,6 +388,13 @@ svg {
   max-width: 28ch;
   margin-top: auto;
   padding: 8px 4px 2px;
+}
+
+.hero-caption-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.72;
+  font-size: 0.94rem;
 }
 
 .hero-orbit {
@@ -573,6 +614,41 @@ svg {
   font-size: 1rem;
 }
 
+.paper-caption-rail {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.paper-caption-card {
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(66, 133, 244, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 249, 255, 0.82));
+}
+
+.paper-caption-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.paper-caption-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.68;
+  font-size: 0.94rem;
+}
+
+.paper-caption-card-story {
+  margin-top: 24px;
+  max-width: 32ch;
+}
+
 .paper-spread {
   position: relative;
   display: grid;
@@ -591,11 +667,15 @@ svg {
   position: relative;
   min-height: 520px;
   padding: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.36), transparent 42%);
 }
 
 .paper-spread-visual .paper-image {
   min-height: 100%;
   border-radius: 28px;
+  box-shadow: 0 22px 42px rgba(60, 64, 67, 0.12);
 }
 
 .paper-spread-badge {
@@ -748,8 +828,13 @@ svg {
   box-shadow: var(--shadow);
 }
 
+.paper-story-head {
+  padding-top: 14px;
+}
+
 .paper-story-visual .paper-image {
   min-height: 100%;
+  box-shadow: 0 18px 36px rgba(60, 64, 67, 0.1);
 }
 
 .paper-list-hidden {
@@ -950,6 +1035,10 @@ svg {
     min-height: 360px;
   }
 
+  .paper-caption-rail {
+    grid-template-columns: 1fr;
+  }
+
   .hero-collage {
     inset: 20px 20px 210px;
   }
@@ -1093,8 +1182,19 @@ svg {
     padding: 20px 22px 22px;
   }
 
+  .paper-spread-badge {
+    left: 24px;
+    bottom: 24px;
+  }
+
   .paper-meta {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .collage-meta {
+    max-width: none;
+    inset: auto 10px 10px 10px;
+    padding: 10px 12px;
   }
 }

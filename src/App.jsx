@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
 const papers = [
   {
@@ -168,6 +169,7 @@ const copy = {
     heroCards: ["研究亮点", "最新论文"],
     heroCaption: "研究拼贴",
     heroCaptionBody: "从 benchmark 结构、长视频页面到实验问题定义，拼成一个更像研究编辑页的首屏。",
+    heroSurface: "首屏视觉被处理成更轻的研究海报，而不是作品集拼盘。",
     spreadLabel: "主视觉论文",
     spreadTitle: "把 SocialOmni 放进更像 Google Research 的 editorial spread。",
     spreadBody:
@@ -177,6 +179,12 @@ const copy = {
     secondaryLabel: "延展研究",
     storyLead: "第二篇论文放在偏移式版面中，像编辑页的 follow-up story。",
     storyNote: "强化长视频理解方法、结果曲线与论文入口的连续性。",
+    captionAxis: "研究轴线",
+    captionAxisText: "社交交互中的人、时机与回应策略被拆成可读的视觉锚点。",
+    captionFrame: "版面说明",
+    captionFrameText: "图片负责气氛和第一印象，文字负责方法、数据与入口，不再互相叠压。",
+    captionStory: "补充论文",
+    captionStoryText: "第二篇论文采用偏移式跟进版面，形成主研究与延展研究的阅读节奏。",
   },
   en: {
     nav: { scholar: "Scholar", email: "Email", lang: "中文" },
@@ -216,6 +224,7 @@ const copy = {
     heroCaption: "Research Collage",
     heroCaptionBody:
       "A first-view composition that connects benchmark structure, long-video pages, and framing questions into an editorial research poster.",
+    heroSurface: "The first screen behaves more like a research poster than a portfolio mosaic.",
     spreadLabel: "Lead Publication",
     spreadTitle: "SocialOmni framed as an editorial spread in the spirit of Google Research.",
     spreadBody:
@@ -225,6 +234,12 @@ const copy = {
     secondaryLabel: "Follow-up Study",
     storyLead: "The second paper is positioned as an offset follow-up story rather than a symmetric list item.",
     storyNote: "This keeps long-video methodology, performance gains, and the paper entry in one continuous reading path.",
+    captionAxis: "Research Axis",
+    captionAxisText: "Who, timing, and response strategy become readable anchors instead of decorative tags.",
+    captionFrame: "Editorial Framing",
+    captionFrameText: "Images carry atmosphere and first impression, while text carries method, metrics, and access points.",
+    captionStory: "Secondary Story",
+    captionStoryText: "The second paper works as an offset follow-up spread to sustain the reading rhythm.",
   },
 };
 
@@ -319,8 +334,39 @@ function Icon({ type }) {
 
 function App() {
   const [lang, setLang] = useState("zh");
+  const heroPanelRef = useRef(null);
+  const papersRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
   const t = copy[lang];
   const factValues = quickFacts.map((item) => item.value);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroPanelRef,
+    offset: ["start end", "end start"],
+  });
+  const { scrollYProgress: papersScroll } = useScroll({
+    target: papersRef,
+    offset: ["start end", "end start"],
+  });
+  const socialY = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [0, 0] : [18, -30]);
+  const socialRotate = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [-6, -6] : [-8, -3]);
+  const efsY = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [0, 0] : [-14, 34]);
+  const efsRotate = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [5, 5] : [8, 2]);
+  const whoY = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [0, 0] : [8, -18]);
+  const whenY = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [0, 0] : [-10, 16]);
+  const howY = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [0, 0] : [14, -12]);
+  const hazeY = useTransform(heroScroll, [0, 1], shouldReduceMotion ? [0, 0] : [0, -40]);
+  const hazeOpacity = useTransform(heroScroll, [0, 1], [0.55, 0.9]);
+  const spreadY = useTransform(papersScroll, [0, 1], shouldReduceMotion ? [0, 0] : [30, -24]);
+  const spreadCaptionY = useTransform(papersScroll, [0, 1], shouldReduceMotion ? [0, 0] : [0, -14]);
+  const storyY = useTransform(papersScroll, [0, 1], shouldReduceMotion ? [0, 0] : [40, -18]);
+  const collageMotion = {
+    "collage-social": { y: socialY, rotate: socialRotate },
+    "collage-efs": { y: efsY, rotate: efsRotate },
+    "collage-who": { y: whoY },
+    "collage-when": { y: whenY },
+    "collage-how": { y: howY },
+  };
+
   return (
     <div className="page-shell">
       <header className="hero">
@@ -383,12 +429,16 @@ function App() {
             </div>
           </div>
 
-          <div className="hero-panel">
+          <div className="hero-panel" ref={heroPanelRef}>
+            <motion.div className="hero-haze hero-haze-sun" style={{ y: hazeY, opacity: hazeOpacity }} aria-hidden="true" />
+            <motion.div className="hero-haze hero-haze-mist" style={{ y: socialY, opacity: hazeOpacity }} aria-hidden="true" />
+            <div className="hero-grain" aria-hidden="true" />
             <div className="hero-collage" aria-hidden="true">
               {heroCollage.map((item) => (
-                <div
+                <motion.div
                   key={item.className}
                   className={`collage-piece ${item.className} ${item.src ? "collage-image" : "collage-label"}`}
+                  style={collageMotion[item.className]}
                 >
                   {item.src ? (
                     <>
@@ -404,7 +454,7 @@ function App() {
                       <span>{item.text}</span>
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
             <div className="hero-orbit hero-orbit-blue" aria-hidden="true" />
@@ -413,6 +463,7 @@ function App() {
             <div className="hero-caption">
               <p className="panel-label">{t.heroCaption}</p>
               <p className="panel-value">{t.heroCaptionBody}</p>
+              <p className="hero-caption-note">{t.heroSurface}</p>
             </div>
             <div className="panel-card">
               <p className="panel-label">{t.orientation}</p>
@@ -482,7 +533,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section section-papers">
+        <section className="section section-papers" ref={papersRef}>
           <div className="paper-editorial">
             <div className="section-heading paper-heading">
               <p className="section-kicker">{t.papers}</p>
@@ -500,7 +551,7 @@ function App() {
                 </div>
               </aside>
 
-              <article className="paper-spread">
+              <motion.article className="paper-spread" style={{ y: spreadY }}>
                 <div className="paper-spread-visual">
                   <img src={papers[0].image} alt={papers[0].title} className="paper-image" />
                   <div className="paper-spread-badge">
@@ -509,6 +560,16 @@ function App() {
                   </div>
                 </div>
                 <div className="paper-spread-body">
+                  <motion.div className="paper-caption-rail" style={{ y: spreadCaptionY }}>
+                    <div className="paper-caption-card">
+                      <span>{t.captionAxis}</span>
+                      <p>{t.captionAxisText}</p>
+                    </div>
+                    <div className="paper-caption-card">
+                      <span>{t.captionFrame}</span>
+                      <p>{t.captionFrameText}</p>
+                    </div>
+                  </motion.div>
                   <div className="paper-meta">
                     <span>{papers[0].year}</span>
                     <span>{papers[0].venue}</span>
@@ -537,16 +598,20 @@ function App() {
                     ))}
                   </div>
                 </div>
-              </article>
+              </motion.article>
             </div>
           </div>
 
-          <article className="paper-story">
+          <motion.article className="paper-story" style={{ y: storyY }}>
             <div className="paper-story-head">
               <p className="section-kicker">{t.secondaryLabel}</p>
               <h3>{papers[1].fullTitle}</h3>
               <p>{t.storyLead}</p>
               <p>{t.storyNote}</p>
+              <div className="paper-caption-card paper-caption-card-story">
+                <span>{t.captionStory}</span>
+                <p>{t.captionStoryText}</p>
+              </div>
             </div>
             <div className="paper-story-card">
               <div className="paper-story-visual">
@@ -575,7 +640,7 @@ function App() {
                 </div>
               </div>
             </div>
-          </article>
+          </motion.article>
 
           <div className="paper-list paper-list-hidden" aria-hidden="true">
             {papers.map((paper, index) => (
