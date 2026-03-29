@@ -79,6 +79,11 @@ const quickFacts = [
   { label: "Theme", value: "Research x Systems x Quant" },
 ];
 
+const featuredPreview = {
+  title: "Featured Research Preview",
+  subtitle: "A compact view of benchmark design, long-video understanding, and deployable evaluation workflows.",
+};
+
 function Icon({ type }) {
   const props = {
     viewBox: "0 0 24 24",
@@ -193,14 +198,24 @@ function App() {
           <div className="hero-copy">
             <p className="eyebrow">Research, systems, and disciplined execution</p>
             <h1>
-              Multimodal research and quantitative methods, translated into usable
-              software.
+              Research interfaces for multimodal systems, quantitative methods,
+              and usable software.
             </h1>
             <p className="lead">
               I work on model evaluation, quantitative research, and software
               infrastructure with an emphasis on clarity, reproducibility, and
               real deployment constraints.
             </p>
+            <div className="hero-inline-notes">
+              <div className="hero-note">
+                <span className="hero-note-dot hero-note-blue" />
+                <p>Benchmarks designed for realistic interaction instead of isolated accuracy.</p>
+              </div>
+              <div className="hero-note">
+                <span className="hero-note-dot hero-note-green" />
+                <p>Research outputs connected to code, datasets, and implementation pathways.</p>
+              </div>
+            </div>
             <div className="hero-actions">
               <a
                 className="button button-primary"
@@ -247,6 +262,10 @@ function App() {
               </p>
             </div>
             <div className="hero-preview">
+              <div className="hero-preview-heading">
+                <span>{featuredPreview.title}</span>
+                <p>{featuredPreview.subtitle}</p>
+              </div>
               <article className="hero-preview-card">
                 <img
                   src="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png"
@@ -307,6 +326,39 @@ function App() {
             <p className="section-kicker">Selected Publications</p>
             <h2>Recent work and public research artifacts.</h2>
           </div>
+          <article className="paper-feature">
+            <div className="paper-feature-copy">
+              <p className="section-kicker">Research Highlight</p>
+              <h3>SocialOmni as a benchmark surface, not just a paper entry.</h3>
+              <p>
+                The project combines benchmark design, public dataset release,
+                and reproducible evaluation assets into one research-facing
+                interface. The emphasis is not only reporting results, but also
+                exposing how the benchmark is structured and how others can work
+                with it.
+              </p>
+              <div className="paper-feature-metrics">
+                <div>
+                  <strong>2,000</strong>
+                  <span>Perception Samples</span>
+                </div>
+                <div>
+                  <strong>209</strong>
+                  <span>Diagnostic Cases</span>
+                </div>
+                <div>
+                  <strong>3</strong>
+                  <span>Social Interaction Axes</span>
+                </div>
+              </div>
+            </div>
+            <div className="paper-feature-visual">
+              <img
+                src="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png"
+                alt="SocialOmni featured preview"
+              />
+            </div>
+          </article>
           <div className="paper-list">
             {papers.map((paper, index) => (
               <article key={paper.title} className="paper-item">
