@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 
+const socialOmniImage = "/Alexisxty/assets/socialomni-gradient.png";
+
 const papers = [
   {
     title: "SocialOmni",
@@ -10,8 +12,7 @@ const papers = [
     venue: "arXiv:2603.16859",
     summary:
       "A benchmark for evaluating who speaks, when to interrupt, and how to respond in realistic multimodal dialogue.",
-    image:
-      "https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png",
+    image: socialOmniImage,
     stats: [
       { label: "Perception Samples", value: "2,000" },
       { label: "Diagnostic Set", value: "209" },
@@ -103,7 +104,7 @@ const quickFacts = [
 const heroCollage = [
   {
     className: "collage-social",
-    src: "https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png",
+    src: socialOmniImage,
     alt: "SocialOmni preview",
     tag: "SocialOmni",
     meta: "Benchmark Surface",
@@ -147,17 +148,12 @@ const copy = {
     orientationValue: "研究者 · 建设者 · 独立从业者",
     themes: "核心主题",
     themesValue: "多模态评测 · 量化方法 · 软件基础设施",
-    previewTitle: "研究预览",
-    previewSubtitle: "把 benchmark、长视频理解与可复现实验组织成一个更完整的研究界面。",
     factLabels: ["代表论文", "公开研究资产", "主题方向"],
     directions: "研究方向",
     directionsTitle: "当前工作主要由三条主线构成。",
     papers: "代表成果",
     papersTitle: "近期工作与公开研究资产。",
     researchHighlight: "重点项目",
-    highlightTitle: "SocialOmni 不只是论文条目，更像一个可访问的研究表面。",
-    highlightBody:
-      "这个项目把 benchmark 设计、公开数据集与可复现实验资源整合到了同一个研究入口里。重点不仅是展示结果，也包括让别人能够理解 benchmark 结构并直接使用它。",
     highlightMetrics: ["感知样本", "诊断案例", "社交交互维度"],
     currentFocus: "当前关注",
     currentFocusTitle: "我最近在推进的工作。",
@@ -166,25 +162,19 @@ const copy = {
     scholarDesc: "论文、引用与研究记录。",
     githubDesc: "代码、实验与实现产物。",
     emailDesc: "项目合作、研究交流与直接联系。",
-    heroCards: ["研究亮点", "最新论文"],
-    heroCaption: "研究拼贴",
-    heroCaptionBody: "从 benchmark 结构、长视频页面到实验问题定义，拼成一个更像研究编辑页的首屏。",
-    heroSurface: "首屏视觉被处理成更轻的研究海报，而不是作品集拼盘。",
     spreadLabel: "主视觉论文",
-    spreadTitle: "把 SocialOmni 放进更像 Google Research 的 editorial spread。",
-    spreadBody:
-      "主论文不再只是一张卡片，而是被放进更大的页面叙事里：左侧保留研究意图和方法框架，右侧用更强的图像、数据与入口来承接阅读动线。",
+    spreadTitle: "SocialOmni",
+    spreadBody: "Benchmarking audio-visual social interactivity in omni models.",
     spreadNote: "公开资产",
     spreadNoteValue: "Paper / Code / Dataset",
     secondaryLabel: "延展研究",
-    storyLead: "第二篇论文放在偏移式版面中，像编辑页的 follow-up story。",
-    storyNote: "强化长视频理解方法、结果曲线与论文入口的连续性。",
+    storyLead: "Long-video understanding with event-anchored frame selection.",
     captionAxis: "研究轴线",
-    captionAxisText: "社交交互中的人、时机与回应策略被拆成可读的视觉锚点。",
-    captionFrame: "版面说明",
-    captionFrameText: "图片负责气氛和第一印象，文字负责方法、数据与入口，不再互相叠压。",
+    captionAxisText: "Who · When · How",
+    captionFrame: "方法关键词",
+    captionFrameText: "Benchmark · Dataset · Reproducibility",
     captionStory: "补充论文",
-    captionStoryText: "第二篇论文采用偏移式跟进版面，形成主研究与延展研究的阅读节奏。",
+    captionStoryText: "Event-aware selection · Query relevance · Diversity",
   },
   en: {
     nav: { scholar: "Scholar", email: "Email", lang: "中文" },
@@ -200,18 +190,12 @@ const copy = {
     orientationValue: "Researcher · Builder · Independent",
     themes: "Primary themes",
     themesValue: "Multimodal evaluation · Quant methods · Infrastructure",
-    previewTitle: "Featured Research Preview",
-    previewSubtitle:
-      "A compact view of benchmark design, long-video understanding, and deployable evaluation workflows.",
     factLabels: ["Selected Papers", "Public Research Assets", "Theme"],
     directions: "Directions",
     directionsTitle: "Three threads define the work.",
     papers: "Selected Publications",
     papersTitle: "Recent work and public research artifacts.",
     researchHighlight: "Research Highlight",
-    highlightTitle: "SocialOmni as a benchmark surface, not just a paper entry.",
-    highlightBody:
-      "The project combines benchmark design, public dataset release, and reproducible evaluation assets into one research-facing interface. The emphasis is not only reporting results, but also exposing how the benchmark is structured and how others can work with it.",
     highlightMetrics: ["Perception Samples", "Diagnostic Cases", "Interaction Axes"],
     currentFocus: "Current Focus",
     currentFocusTitle: "What I am working on now.",
@@ -220,26 +204,19 @@ const copy = {
     scholarDesc: "Publications, citations, and research record.",
     githubDesc: "Code, experiments, and implementation artifacts.",
     emailDesc: "Direct contact for research, projects, and collaboration.",
-    heroCards: ["Research Highlight", "Latest Paper"],
-    heroCaption: "Research Collage",
-    heroCaptionBody:
-      "A first-view composition that connects benchmark structure, long-video pages, and framing questions into an editorial research poster.",
-    heroSurface: "The first screen behaves more like a research poster than a portfolio mosaic.",
     spreadLabel: "Lead Publication",
-    spreadTitle: "SocialOmni framed as an editorial spread in the spirit of Google Research.",
-    spreadBody:
-      "The lead publication is treated as a larger page narrative instead of a standalone card, pairing research intent and benchmark framing with stronger imagery, metrics, and entry points.",
+    spreadTitle: "SocialOmni",
+    spreadBody: "Benchmarking audio-visual social interactivity in omni models.",
     spreadNote: "Public Assets",
     spreadNoteValue: "Paper / Code / Dataset",
     secondaryLabel: "Follow-up Study",
-    storyLead: "The second paper is positioned as an offset follow-up story rather than a symmetric list item.",
-    storyNote: "This keeps long-video methodology, performance gains, and the paper entry in one continuous reading path.",
+    storyLead: "Long-video understanding with event-anchored frame selection.",
     captionAxis: "Research Axis",
-    captionAxisText: "Who, timing, and response strategy become readable anchors instead of decorative tags.",
-    captionFrame: "Editorial Framing",
-    captionFrameText: "Images carry atmosphere and first impression, while text carries method, metrics, and access points.",
+    captionAxisText: "Who · When · How",
+    captionFrame: "Method Keywords",
+    captionFrameText: "Benchmark · Dataset · Reproducibility",
     captionStory: "Secondary Story",
-    captionStoryText: "The second paper works as an offset follow-up spread to sustain the reading rhythm.",
+    captionStoryText: "Event-aware selection · Query relevance · Diversity",
   },
 };
 
@@ -457,47 +434,15 @@ function App() {
                 </motion.div>
               ))}
             </div>
-            <div className="hero-orbit hero-orbit-blue" aria-hidden="true" />
-            <div className="hero-orbit hero-orbit-red" aria-hidden="true" />
-            <div className="hero-orbit hero-orbit-yellow" aria-hidden="true" />
-            <div className="hero-caption">
-              <p className="panel-label">{t.heroCaption}</p>
-              <p className="panel-value">{t.heroCaptionBody}</p>
-              <p className="hero-caption-note">{t.heroSurface}</p>
-            </div>
-            <div className="panel-card">
-              <p className="panel-label">{t.orientation}</p>
-              <p className="panel-value">{t.orientationValue}</p>
-            </div>
-            <div className="panel-card">
-              <p className="panel-label">{t.themes}</p>
-              <p className="panel-value">{t.themesValue}</p>
-            </div>
-            <div className="hero-preview">
-              <div className="hero-preview-heading">
-                <span>{t.previewTitle}</span>
-                <p>{t.previewSubtitle}</p>
+            <div className="hero-panel-notes">
+              <div className="panel-card">
+                <p className="panel-label">{t.orientation}</p>
+                <p className="panel-value">{t.orientationValue}</p>
               </div>
-              <article className="hero-preview-card">
-                <img
-                  src="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png"
-                  alt="SocialOmni preview"
-                />
-                <div>
-                  <span>{t.heroCards[0]}</span>
-                  <strong>SocialOmni</strong>
-                </div>
-              </article>
-              <article className="hero-preview-card">
-                <img
-                  src="/Alexisxty/assets/efs-paper-page1.png"
-                  alt="Event-Anchored Frame Selection preview"
-                />
-                <div>
-                  <span>{t.heroCards[1]}</span>
-                  <strong>Event-Anchored Frame Selection</strong>
-                </div>
-              </article>
+              <div className="panel-card">
+                <p className="panel-label">{t.themes}</p>
+                <p className="panel-value">{t.themesValue}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -544,7 +489,6 @@ function App() {
                 <p className="section-kicker">{t.researchHighlight}</p>
                 <h3>{t.spreadTitle}</h3>
                 <p>{t.spreadBody}</p>
-                <p>{t.highlightBody}</p>
                 <div className="paper-editorial-note">
                   <span>{t.spreadNote}</span>
                   <strong>{t.spreadNoteValue}</strong>
@@ -607,7 +551,6 @@ function App() {
               <p className="section-kicker">{t.secondaryLabel}</p>
               <h3>{papers[1].fullTitle}</h3>
               <p>{t.storyLead}</p>
-              <p>{t.storyNote}</p>
               <div className="paper-caption-card paper-caption-card-story">
                 <span>{t.captionStory}</span>
                 <p>{t.captionStoryText}</p>
