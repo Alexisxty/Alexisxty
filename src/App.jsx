@@ -30,7 +30,7 @@ const papers = [
     venue: "arXiv:2603.00983",
     summary:
       "An event-aware frame selection method that improves query relevance, event coverage, and visual diversity for long-video understanding.",
-    image: "",
+    image: "/Alexisxty/assets/efs-paper-page1.png",
     stats: [
       { label: "VideoMME", value: "+4.7%" },
       { label: "LongVideoBench", value: "+4.9%" },
@@ -245,6 +245,28 @@ function App() {
               <p className="panel-value">
                 Multimodal evaluation · Quant methods · Infrastructure
               </p>
+            </div>
+            <div className="hero-preview">
+              <article className="hero-preview-card">
+                <img
+                  src="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png"
+                  alt="SocialOmni preview"
+                />
+                <div>
+                  <span>Research Highlight</span>
+                  <strong>SocialOmni</strong>
+                </div>
+              </article>
+              <article className="hero-preview-card">
+                <img
+                  src="/Alexisxty/assets/efs-paper-page1.png"
+                  alt="Event-Anchored Frame Selection preview"
+                />
+                <div>
+                  <span>Latest Paper</span>
+                  <strong>Event-Anchored Frame Selection</strong>
+                </div>
+              </article>
             </div>
           </div>
         </div>
