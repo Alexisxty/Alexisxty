@@ -45,33 +45,51 @@ const papers = [
 const directions = [
   {
     icon: "multimodal",
-    title: "Multimodal Research",
-    text: "Evaluation of social interaction, long-video understanding, and realistic model behavior.",
+    title: { zh: "多模态研究", en: "Multimodal Research" },
+    text: {
+      zh: "关注社交交互 benchmark、长视频理解，以及更贴近真实世界的模型行为评测。",
+      en: "Evaluation of social interaction, long-video understanding, and realistic model behavior.",
+    },
   },
   {
     icon: "quant",
-    title: "Quantitative Methods",
-    text: "Structured decision frameworks, market observation, and disciplined research workflows.",
+    title: { zh: "量化方法", en: "Quantitative Methods" },
+    text: {
+      zh: "强调结构化决策框架、市场观察方法与更有纪律性的研究流程。",
+      en: "Structured decision frameworks, market observation, and disciplined research workflows.",
+    },
   },
   {
     icon: "systems",
-    title: "Software Systems",
-    text: "Research tooling, data infrastructure, and dependable implementation from prototype to delivery.",
+    title: { zh: "软件系统", en: "Software Systems" },
+    text: {
+      zh: "覆盖研究工具、数据基础设施，以及从原型到交付的稳定实现。",
+      en: "Research tooling, data infrastructure, and dependable implementation from prototype to delivery.",
+    },
   },
 ];
 
 const focus = [
   {
     icon: "signal",
-    text: "Benchmarking multimodal systems under realistic interaction settings",
+    text: {
+      zh: "在更真实的交互场景下评测多模态系统",
+      en: "Benchmarking multimodal systems under realistic interaction settings",
+    },
   },
   {
     icon: "market",
-    text: "Studying structured approaches for cryptocurrency market research",
+    text: {
+      zh: "研究面向加密货币市场的结构化研究方法",
+      en: "Studying structured approaches for cryptocurrency market research",
+    },
   },
   {
     icon: "stack",
-    text: "Building lightweight tools that connect data, models, and evaluation",
+    text: {
+      zh: "构建连接数据、模型与评测流程的轻量工具",
+      en: "Building lightweight tools that connect data, models, and evaluation",
+    },
   },
 ];
 
@@ -81,10 +99,37 @@ const quickFacts = [
   { label: "Theme", value: "Research x Systems x Quant" },
 ];
 
-const featuredPreview = {
-  title: "Featured Research Preview",
-  subtitle: "A compact view of benchmark design, long-video understanding, and deployable evaluation workflows.",
-};
+const heroCollage = [
+  {
+    className: "collage-social",
+    src: "https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png",
+    alt: "SocialOmni preview",
+    tag: "SocialOmni",
+    meta: "Benchmark Surface",
+  },
+  {
+    className: "collage-efs",
+    src: "/Alexisxty/assets/efs-paper-page1.png",
+    alt: "Event-Anchored Frame Selection preview",
+    tag: "Event-Anchored Frame Selection",
+    meta: "Long-Video Study",
+  },
+  {
+    className: "collage-who",
+    label: "WHO",
+    text: "Speaker Identity",
+  },
+  {
+    className: "collage-when",
+    label: "WHEN",
+    text: "Turn Timing",
+  },
+  {
+    className: "collage-how",
+    label: "HOW",
+    text: "Response Strategy",
+  },
+];
 
 const copy = {
   zh: {
@@ -121,6 +166,17 @@ const copy = {
     githubDesc: "代码、实验与实现产物。",
     emailDesc: "项目合作、研究交流与直接联系。",
     heroCards: ["研究亮点", "最新论文"],
+    heroCaption: "研究拼贴",
+    heroCaptionBody: "从 benchmark 结构、长视频页面到实验问题定义，拼成一个更像研究编辑页的首屏。",
+    spreadLabel: "主视觉论文",
+    spreadTitle: "把 SocialOmni 放进更像 Google Research 的 editorial spread。",
+    spreadBody:
+      "主论文不再只是一张卡片，而是被放进更大的页面叙事里：左侧保留研究意图和方法框架，右侧用更强的图像、数据与入口来承接阅读动线。",
+    spreadNote: "公开资产",
+    spreadNoteValue: "Paper / Code / Dataset",
+    secondaryLabel: "延展研究",
+    storyLead: "第二篇论文放在偏移式版面中，像编辑页的 follow-up story。",
+    storyNote: "强化长视频理解方法、结果曲线与论文入口的连续性。",
   },
   en: {
     nav: { scholar: "Scholar", email: "Email", lang: "中文" },
@@ -157,6 +213,18 @@ const copy = {
     githubDesc: "Code, experiments, and implementation artifacts.",
     emailDesc: "Direct contact for research, projects, and collaboration.",
     heroCards: ["Research Highlight", "Latest Paper"],
+    heroCaption: "Research Collage",
+    heroCaptionBody:
+      "A first-view composition that connects benchmark structure, long-video pages, and framing questions into an editorial research poster.",
+    spreadLabel: "Lead Publication",
+    spreadTitle: "SocialOmni framed as an editorial spread in the spirit of Google Research.",
+    spreadBody:
+      "The lead publication is treated as a larger page narrative instead of a standalone card, pairing research intent and benchmark framing with stronger imagery, metrics, and entry points.",
+    spreadNote: "Public Assets",
+    spreadNoteValue: "Paper / Code / Dataset",
+    secondaryLabel: "Follow-up Study",
+    storyLead: "The second paper is positioned as an offset follow-up story rather than a symmetric list item.",
+    storyNote: "This keeps long-video methodology, performance gains, and the paper entry in one continuous reading path.",
   },
 };
 
@@ -253,15 +321,6 @@ function App() {
   const [lang, setLang] = useState("zh");
   const t = copy[lang];
   const factValues = quickFacts.map((item) => item.value);
-  const heroMosaic = [
-    { type: "image", src: "https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png", alt: "SocialOmni thumbnail" },
-    { type: "label", title: "WHO", text: "Speaker ID" },
-    { type: "image", src: "/Alexisxty/assets/efs-paper-page1.png", alt: "Event-Anchored Frame Selection page" },
-    { type: "label", title: "WHEN", text: "Timing" },
-    { type: "label", title: "HOW", text: "Response" },
-    { type: "image", src: "https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png", alt: "SocialOmni preview" },
-  ];
-
   return (
     <div className="page-shell">
       <header className="hero">
@@ -325,14 +384,23 @@ function App() {
           </div>
 
           <div className="hero-panel">
-            <div className="mosaic-grid" aria-hidden="true">
-              {heroMosaic.map((item, index) => (
-                <div key={`${item.title || item.alt}-${index}`} className={`mosaic-tile mosaic-tile-${item.type}`}>
-                  {item.type === "image" ? (
-                    <img src={item.src} alt={item.alt} />
+            <div className="hero-collage" aria-hidden="true">
+              {heroCollage.map((item) => (
+                <div
+                  key={item.className}
+                  className={`collage-piece ${item.className} ${item.src ? "collage-image" : "collage-label"}`}
+                >
+                  {item.src ? (
+                    <>
+                      <img src={item.src} alt={item.alt} />
+                      <div className="collage-meta">
+                        <span>{item.meta}</span>
+                        <strong>{item.tag}</strong>
+                      </div>
+                    </>
                   ) : (
-                    <div>
-                      <strong>{item.title}</strong>
+                    <div className="collage-label-body">
+                      <strong>{item.label}</strong>
                       <span>{item.text}</span>
                     </div>
                   )}
@@ -342,6 +410,10 @@ function App() {
             <div className="hero-orbit hero-orbit-blue" aria-hidden="true" />
             <div className="hero-orbit hero-orbit-red" aria-hidden="true" />
             <div className="hero-orbit hero-orbit-yellow" aria-hidden="true" />
+            <div className="hero-caption">
+              <p className="panel-label">{t.heroCaption}</p>
+              <p className="panel-value">{t.heroCaptionBody}</p>
+            </div>
             <div className="panel-card">
               <p className="panel-label">{t.orientation}</p>
               <p className="panel-value">{t.orientationValue}</p>
@@ -397,13 +469,13 @@ function App() {
           </div>
           <div className="direction-list">
             {directions.map((item) => (
-              <article key={item.title} className="direction-item">
+              <article key={item.title.en} className="direction-item">
                 <div className="direction-icon">
                   <Icon type={item.icon} />
                 </div>
                 <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+                  <h3>{item.title[lang]}</h3>
+                  <p>{item.text[lang]}</p>
                 </div>
               </article>
             ))}
@@ -411,75 +483,104 @@ function App() {
         </section>
 
         <section className="section section-papers">
-          <div className="section-heading">
-            <p className="section-kicker">{t.papers}</p>
-            <h2>{t.papersTitle}</h2>
-          </div>
-          <article className="paper-feature">
-            <div className="paper-feature-copy">
-              <p className="section-kicker">{t.researchHighlight}</p>
-              <h3>{t.highlightTitle}</h3>
-              <p>{t.highlightBody}</p>
-              <div className="paper-feature-metrics">
-                <div>
-                  <strong>2,000</strong>
-                  <span>{t.highlightMetrics[0]}</span>
-                </div>
-                <div>
-                  <strong>209</strong>
-                  <span>{t.highlightMetrics[1]}</span>
-                </div>
-                <div>
-                  <strong>3</strong>
-                  <span>{t.highlightMetrics[2]}</span>
-                </div>
-              </div>
+          <div className="paper-editorial">
+            <div className="section-heading paper-heading">
+              <p className="section-kicker">{t.papers}</p>
+              <h2>{t.papersTitle}</h2>
             </div>
-            <div className="paper-feature-visual">
-              <img
-                src="https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png"
-                alt="SocialOmni featured preview"
-              />
-            </div>
-          </article>
-          <div className="paper-list">
-            {papers.map((paper, index) => (
-              <article key={paper.title} className="paper-item">
-                <div className="paper-visual">
-                  {paper.image ? (
-                    <img src={paper.image} alt={paper.title} className="paper-image" />
-                  ) : (
-                    <div className="paper-graphic" aria-hidden="true">
-                      <span />
-                      <span />
-                      <span />
-                    </div>
-                  )}
+            <div className="paper-editorial-grid">
+              <aside className="paper-editorial-copy">
+                <p className="section-kicker">{t.researchHighlight}</p>
+                <h3>{t.spreadTitle}</h3>
+                <p>{t.spreadBody}</p>
+                <p>{t.highlightBody}</p>
+                <div className="paper-editorial-note">
+                  <span>{t.spreadNote}</span>
+                  <strong>{t.spreadNoteValue}</strong>
                 </div>
-                <div className="paper-body">
-                  <div className="paper-meta">
-                    <span>{paper.year}</span>
-                    <span>{paper.venue}</span>
+              </aside>
+
+              <article className="paper-spread">
+                <div className="paper-spread-visual">
+                  <img src={papers[0].image} alt={papers[0].title} className="paper-image" />
+                  <div className="paper-spread-badge">
+                    <span>{t.spreadLabel}</span>
+                    <strong>{papers[0].year}</strong>
                   </div>
-                  <h3>{paper.fullTitle}</h3>
-                  <p>{paper.summary}</p>
-                  <div className="paper-stats">
-                    {paper.stats.map((item) => (
-                      <div key={item.label} className="paper-stat">
-                        <span>{item.value}</span>
-                        <small>{item.label}</small>
-                      </div>
-                    ))}
+                </div>
+                <div className="paper-spread-body">
+                  <div className="paper-meta">
+                    <span>{papers[0].year}</span>
+                    <span>{papers[0].venue}</span>
+                  </div>
+                  <h3>{papers[0].fullTitle}</h3>
+                  <p>{papers[0].summary}</p>
+                  <div className="paper-feature-metrics">
+                    <div>
+                      <strong>2,000</strong>
+                      <span>{t.highlightMetrics[0]}</span>
+                    </div>
+                    <div>
+                      <strong>209</strong>
+                      <span>{t.highlightMetrics[1]}</span>
+                    </div>
+                    <div>
+                      <strong>3</strong>
+                      <span>{t.highlightMetrics[2]}</span>
+                    </div>
                   </div>
                   <div className="paper-links">
-                    {paper.links.map((link) => (
+                    {papers[0].links.map((link) => (
                       <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
                         {link.label}
                       </a>
                     ))}
                   </div>
                 </div>
-                <div className={`paper-accent paper-accent-${index + 1}`} aria-hidden="true" />
+              </article>
+            </div>
+          </div>
+
+          <article className="paper-story">
+            <div className="paper-story-head">
+              <p className="section-kicker">{t.secondaryLabel}</p>
+              <h3>{papers[1].fullTitle}</h3>
+              <p>{t.storyLead}</p>
+              <p>{t.storyNote}</p>
+            </div>
+            <div className="paper-story-card">
+              <div className="paper-story-visual">
+                <img src={papers[1].image} alt={papers[1].title} className="paper-image" />
+              </div>
+              <div className="paper-body">
+                <div className="paper-meta">
+                  <span>{papers[1].year}</span>
+                  <span>{papers[1].venue}</span>
+                </div>
+                <p>{papers[1].summary}</p>
+                <div className="paper-stats">
+                  {papers[1].stats.map((item) => (
+                    <div key={item.label} className="paper-stat">
+                      <span>{item.value}</span>
+                      <small>{item.label}</small>
+                    </div>
+                  ))}
+                </div>
+                <div className="paper-links">
+                  {papers[1].links.map((link) => (
+                    <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <div className="paper-list paper-list-hidden" aria-hidden="true">
+            {papers.map((paper, index) => (
+              <article key={paper.title} className="paper-item">
+                <div className={`paper-accent paper-accent-${index + 1}`} />
               </article>
             ))}
           </div>
@@ -492,11 +593,11 @@ function App() {
           </div>
           <div className="focus-list">
             {focus.map((item) => (
-              <div key={item.text} className="focus-item">
+              <div key={item.text.en} className="focus-item">
                 <span className="focus-icon">
                   <Icon type={item.icon} />
                 </span>
-                <p>{item.text}</p>
+                <p>{item.text[lang]}</p>
               </div>
             ))}
           </div>

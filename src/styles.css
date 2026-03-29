@@ -241,55 +241,119 @@ svg {
     linear-gradient(135deg, rgba(66, 133, 244, 0.08), rgba(52, 168, 83, 0.04));
 }
 
-.mosaic-grid {
+.hero-collage {
   position: absolute;
-  inset: 28px 28px 220px;
-  display: grid;
-  grid-template-columns: 1.05fr 0.8fr 0.95fr;
-  grid-template-rows: repeat(2, minmax(110px, 1fr));
-  gap: 12px;
+  inset: 20px 26px 220px;
 }
 
-.mosaic-tile {
+.collage-piece {
+  position: absolute;
   overflow: hidden;
-  border-radius: 20px;
-  border: 1px solid rgba(66, 133, 244, 0.08);
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 10px 24px rgba(60, 64, 67, 0.06);
+  border: 1px solid rgba(66, 133, 244, 0.1);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 36px rgba(60, 64, 67, 0.1);
 }
 
-.mosaic-tile img {
+.collage-image {
+  border-radius: 28px;
+}
+
+.collage-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.mosaic-tile-label {
+.collage-meta {
+  position: absolute;
+  inset: auto 16px 16px 16px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+}
+
+.collage-meta span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.collage-meta strong {
+  font-family: "Manrope", "IBM Plex Sans", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.35;
+}
+
+.collage-label {
   display: grid;
   place-items: center;
-  text-align: center;
+  border-radius: 22px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(242, 247, 255, 0.95)),
-    radial-gradient(circle at top, rgba(66, 133, 244, 0.08), transparent 72%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(242, 247, 255, 0.92)),
+    radial-gradient(circle at top, rgba(66, 133, 244, 0.1), transparent 72%);
 }
 
-.mosaic-tile-label div {
-  padding: 16px;
+.collage-label-body {
+  padding: 18px;
+  text-align: center;
 }
 
-.mosaic-tile-label strong {
+.collage-label strong {
   display: block;
   margin-bottom: 8px;
   color: var(--accent);
   font-family: "Manrope", "IBM Plex Sans", sans-serif;
   font-size: 1rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
 }
 
-.mosaic-tile-label span {
+.collage-label span {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+}
+
+.collage-social {
+  inset: 4% 25% 18% 0;
+  transform: rotate(-6deg);
+}
+
+.collage-efs {
+  inset: 20% 0 6% 42%;
+  transform: rotate(5deg);
+}
+
+.collage-who {
+  width: 128px;
+  height: 112px;
+  top: 2%;
+  right: 6%;
+}
+
+.collage-when {
+  width: 124px;
+  height: 108px;
+  bottom: 24%;
+  left: 8%;
+}
+
+.collage-how {
+  width: 136px;
+  height: 116px;
+  right: 18%;
+  bottom: -2%;
+}
+
+.hero-caption {
+  position: relative;
+  z-index: 1;
+  max-width: 28ch;
+  margin-top: auto;
+  padding: 8px 4px 2px;
 }
 
 .hero-orbit {
@@ -443,21 +507,35 @@ svg {
 }
 
 .paper-feature {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 24px;
-  align-items: stretch;
-  padding: 28px;
-  margin-bottom: 20px;
-  border-radius: 30px;
-  border: 1px solid rgba(66, 133, 244, 0.12);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 249, 255, 0.94)),
-    radial-gradient(circle at top right, rgba(66, 133, 244, 0.08), transparent 32%);
-  box-shadow: var(--shadow);
+  display: none;
 }
 
-.paper-feature-copy h3 {
+.paper-editorial {
+  position: relative;
+  padding: 12px 0 0;
+}
+
+.paper-heading {
+  margin-bottom: 36px;
+}
+
+.paper-editorial-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.paper-editorial-copy {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  padding-right: 8px;
+}
+
+.paper-editorial-copy h3,
+.paper-story-head h3,
+.paper-spread-body h3 {
   margin: 0;
   font-family: "Manrope", "IBM Plex Sans", sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.8rem);
@@ -465,11 +543,91 @@ svg {
   letter-spacing: -0.04em;
 }
 
-.paper-feature-copy p:not(.section-kicker) {
+.paper-editorial-copy p:not(.section-kicker),
+.paper-story-head p:not(.section-kicker),
+.paper-spread-body p {
   margin: 18px 0 0;
-  max-width: 58ch;
   color: var(--muted);
   line-height: 1.85;
+}
+
+.paper-editorial-note {
+  display: inline-grid;
+  gap: 6px;
+  margin-top: 26px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(66, 133, 244, 0.1);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.paper-editorial-note span {
+  color: var(--accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.paper-editorial-note strong {
+  font-family: "Manrope", "IBM Plex Sans", sans-serif;
+  font-size: 1rem;
+}
+
+.paper-spread {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 0;
+  overflow: hidden;
+  border-radius: 36px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 249, 255, 0.96)),
+    radial-gradient(circle at top right, rgba(66, 133, 244, 0.08), transparent 34%);
+  box-shadow: 0 18px 44px rgba(60, 64, 67, 0.1);
+}
+
+.paper-spread-visual {
+  position: relative;
+  min-height: 520px;
+  padding: 18px;
+}
+
+.paper-spread-visual .paper-image {
+  min-height: 100%;
+  border-radius: 28px;
+}
+
+.paper-spread-badge {
+  position: absolute;
+  left: 36px;
+  bottom: 36px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(66, 133, 244, 0.12);
+}
+
+.paper-spread-badge span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--accent);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.paper-spread-badge strong {
+  font-family: "Manrope", "IBM Plex Sans", sans-serif;
+  font-size: 1.2rem;
+}
+
+.paper-spread-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 32px 30px 12px;
 }
 
 .paper-feature-metrics {
@@ -497,15 +655,6 @@ svg {
 .paper-feature-metrics span {
   color: var(--muted);
   font-size: 0.92rem;
-}
-
-.paper-feature-visual img {
-  width: 100%;
-  height: 100%;
-  min-height: 320px;
-  object-fit: cover;
-  border-radius: 24px;
-  border: 1px solid rgba(66, 133, 244, 0.12);
 }
 
 .direction-list {
@@ -574,6 +723,37 @@ svg {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 249, 255, 0.9));
   border-color: rgba(26, 115, 232, 0.12);
+}
+
+.paper-story {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 34px;
+  padding-left: 9vw;
+}
+
+.paper-story-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 22px;
+  overflow: hidden;
+  border-radius: 32px;
+  border: 1px solid rgba(66, 133, 244, 0.12);
+  padding: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 249, 255, 0.9));
+  box-shadow: var(--shadow);
+}
+
+.paper-story-visual .paper-image {
+  min-height: 100%;
+}
+
+.paper-list-hidden {
+  display: none;
 }
 
 .paper-visual {
@@ -746,7 +926,10 @@ svg {
 
 @media (max-width: 1020px) {
   .paper-item,
-  .paper-feature,
+  .paper-editorial-grid,
+  .paper-spread,
+  .paper-story,
+  .paper-story-card,
   .direction-list,
   .connect-grid {
     grid-template-columns: 1fr;
@@ -755,11 +938,35 @@ svg {
   .paper-visual {
     max-width: 100%;
   }
+  .paper-story {
+    padding-left: 0;
+  }
 
-  .mosaic-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, minmax(92px, 1fr));
-    inset: 24px 24px 220px;
+  .paper-editorial-copy {
+    position: static;
+  }
+
+  .paper-spread-visual {
+    min-height: 360px;
+  }
+
+  .hero-collage {
+    inset: 20px 20px 210px;
+  }
+
+  .collage-social {
+    inset: 2% 18% 26% 0;
+  }
+
+  .collage-efs {
+    inset: 28% 0 4% 36%;
+  }
+
+  .collage-who,
+  .collage-when,
+  .collage-how {
+    width: 112px;
+    height: 100px;
   }
 }
 
@@ -782,7 +989,34 @@ svg {
   }
 
   .hero-panel {
-    min-height: 360px;
+    min-height: 720px;
+  }
+
+  .hero-collage {
+    inset: 20px 20px 260px;
+  }
+
+  .collage-social {
+    inset: 0 12% 42% 0;
+  }
+
+  .collage-efs {
+    inset: 34% 0 8% 26%;
+  }
+
+  .collage-who {
+    top: 2%;
+    right: 0;
+  }
+
+  .collage-when {
+    left: 4%;
+    bottom: 18%;
+  }
+
+  .collage-how {
+    right: 6%;
+    bottom: 0;
   }
 }
 
@@ -807,6 +1041,7 @@ svg {
   .hero-panel,
   .direction-item,
   .paper-item,
+  .paper-story-card,
   .focus-item,
   .connect-item,
   .fact-item {
@@ -815,5 +1050,51 @@ svg {
 
   .paper-stats {
     grid-template-columns: 1fr;
+  }
+
+  .hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(2.7rem, 13vw, 4.2rem);
+  }
+
+  .hero-panel {
+    min-height: 620px;
+  }
+
+  .hero-collage {
+    inset: 16px 16px 250px;
+  }
+
+  .collage-piece {
+    transform: none;
+  }
+
+  .collage-social {
+    inset: 0 4% 48% 0;
+  }
+
+  .collage-efs {
+    inset: 34% 0 14% 16%;
+  }
+
+  .collage-who,
+  .collage-when,
+  .collage-how {
+    width: 94px;
+    height: 84px;
+  }
+
+  .paper-spread-visual {
+    padding: 12px;
+    min-height: 280px;
+  }
+
+  .paper-spread-body {
+    padding: 20px 22px 22px;
+  }
+
+  .paper-meta {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
