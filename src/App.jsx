@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const papers = [
   {
     title: "SocialOmni",
@@ -82,6 +84,80 @@ const quickFacts = [
 const featuredPreview = {
   title: "Featured Research Preview",
   subtitle: "A compact view of benchmark design, long-video understanding, and deployable evaluation workflows.",
+};
+
+const copy = {
+  zh: {
+    nav: { scholar: "学术主页", email: "邮箱", lang: "EN" },
+    eyebrow: "研究、系统与可执行方法",
+    heroTitle: "为多模态系统、量化方法与可用软件设计研究界面。",
+    heroLead:
+      "我主要研究模型评测、量化研究与软件基础设施，强调问题定义清晰、实验可复现，以及能够真正落地的实现方式。",
+    heroNote1: "评测设计聚焦真实交互，而不是孤立的静态准确率。",
+    heroNote2: "研究成果和代码、数据集、实现路径保持连通。",
+    viewPublications: "查看论文",
+    openGitHub: "打开 GitHub",
+    orientation: "当前定位",
+    orientationValue: "研究者 · 建设者 · 独立从业者",
+    themes: "核心主题",
+    themesValue: "多模态评测 · 量化方法 · 软件基础设施",
+    previewTitle: "研究预览",
+    previewSubtitle: "把 benchmark、长视频理解与可复现实验组织成一个更完整的研究界面。",
+    factLabels: ["代表论文", "公开研究资产", "主题方向"],
+    directions: "研究方向",
+    directionsTitle: "当前工作主要由三条主线构成。",
+    papers: "代表成果",
+    papersTitle: "近期工作与公开研究资产。",
+    researchHighlight: "重点项目",
+    highlightTitle: "SocialOmni 不只是论文条目，更像一个可访问的研究表面。",
+    highlightBody:
+      "这个项目把 benchmark 设计、公开数据集与可复现实验资源整合到了同一个研究入口里。重点不仅是展示结果，也包括让别人能够理解 benchmark 结构并直接使用它。",
+    highlightMetrics: ["感知样本", "诊断案例", "社交交互维度"],
+    currentFocus: "当前关注",
+    currentFocusTitle: "我最近在推进的工作。",
+    connect: "联系与入口",
+    connectTitle: "研究记录、代码与直接联系。",
+    scholarDesc: "论文、引用与研究记录。",
+    githubDesc: "代码、实验与实现产物。",
+    emailDesc: "项目合作、研究交流与直接联系。",
+    heroCards: ["研究亮点", "最新论文"],
+  },
+  en: {
+    nav: { scholar: "Scholar", email: "Email", lang: "中文" },
+    eyebrow: "Research, systems, and disciplined execution",
+    heroTitle: "Research interfaces for multimodal systems, quantitative methods, and usable software.",
+    heroLead:
+      "I work on model evaluation, quantitative research, and software infrastructure with an emphasis on clarity, reproducibility, and real deployment constraints.",
+    heroNote1: "Benchmarks designed for realistic interaction instead of isolated accuracy.",
+    heroNote2: "Research outputs connected to code, datasets, and implementation pathways.",
+    viewPublications: "View Publications",
+    openGitHub: "Open GitHub",
+    orientation: "Current orientation",
+    orientationValue: "Researcher · Builder · Independent",
+    themes: "Primary themes",
+    themesValue: "Multimodal evaluation · Quant methods · Infrastructure",
+    previewTitle: "Featured Research Preview",
+    previewSubtitle:
+      "A compact view of benchmark design, long-video understanding, and deployable evaluation workflows.",
+    factLabels: ["Selected Papers", "Public Research Assets", "Theme"],
+    directions: "Directions",
+    directionsTitle: "Three threads define the work.",
+    papers: "Selected Publications",
+    papersTitle: "Recent work and public research artifacts.",
+    researchHighlight: "Research Highlight",
+    highlightTitle: "SocialOmni as a benchmark surface, not just a paper entry.",
+    highlightBody:
+      "The project combines benchmark design, public dataset release, and reproducible evaluation assets into one research-facing interface. The emphasis is not only reporting results, but also exposing how the benchmark is structured and how others can work with it.",
+    highlightMetrics: ["Perception Samples", "Diagnostic Cases", "Interaction Axes"],
+    currentFocus: "Current Focus",
+    currentFocusTitle: "What I am working on now.",
+    connect: "Connect",
+    connectTitle: "Open channels for research and collaboration.",
+    scholarDesc: "Publications, citations, and research record.",
+    githubDesc: "Code, experiments, and implementation artifacts.",
+    emailDesc: "Direct contact for research, projects, and collaboration.",
+    heroCards: ["Research Highlight", "Latest Paper"],
+  },
 };
 
 function Icon({ type }) {
@@ -174,6 +250,18 @@ function Icon({ type }) {
 }
 
 function App() {
+  const [lang, setLang] = useState("zh");
+  const t = copy[lang];
+  const factValues = quickFacts.map((item) => item.value);
+  const heroMosaic = [
+    { type: "image", src: "https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png", alt: "SocialOmni thumbnail" },
+    { type: "label", title: "WHO", text: "Speaker ID" },
+    { type: "image", src: "/Alexisxty/assets/efs-paper-page1.png", alt: "Event-Anchored Frame Selection page" },
+    { type: "label", title: "WHEN", text: "Timing" },
+    { type: "label", title: "HOW", text: "Response" },
+    { type: "image", src: "https://cdn-thumbnails.huggingface.co/social-thumbnails/papers/2603.16859/gradient.png", alt: "SocialOmni preview" },
+  ];
+
   return (
     <div className="page-shell">
       <header className="hero">
@@ -188,32 +276,32 @@ function App() {
               target="_blank"
               rel="noreferrer"
             >
-              Scholar
+              {t.nav.scholar}
             </a>
-            <a href="mailto:alexisty233@gmail.com">Email</a>
+            <a href="mailto:alexisty233@gmail.com">{t.nav.email}</a>
+            <button
+              type="button"
+              className="lang-toggle"
+              onClick={() => setLang(lang === "zh" ? "en" : "zh")}
+            >
+              {t.nav.lang}
+            </button>
           </div>
         </nav>
 
         <div className="hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Research, systems, and disciplined execution</p>
-            <h1>
-              Research interfaces for multimodal systems, quantitative methods,
-              and usable software.
-            </h1>
-            <p className="lead">
-              I work on model evaluation, quantitative research, and software
-              infrastructure with an emphasis on clarity, reproducibility, and
-              real deployment constraints.
-            </p>
+            <p className="eyebrow">{t.eyebrow}</p>
+            <h1>{t.heroTitle}</h1>
+            <p className="lead">{t.heroLead}</p>
             <div className="hero-inline-notes">
               <div className="hero-note">
                 <span className="hero-note-dot hero-note-blue" />
-                <p>Benchmarks designed for realistic interaction instead of isolated accuracy.</p>
+                <p>{t.heroNote1}</p>
               </div>
               <div className="hero-note">
                 <span className="hero-note-dot hero-note-green" />
-                <p>Research outputs connected to code, datasets, and implementation pathways.</p>
+                <p>{t.heroNote2}</p>
               </div>
             </div>
             <div className="hero-actions">
@@ -223,7 +311,7 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                View Publications
+                {t.viewPublications}
               </a>
               <a
                 className="button button-secondary"
@@ -231,40 +319,41 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Open GitHub
+                {t.openGitHub}
               </a>
             </div>
           </div>
 
           <div className="hero-panel">
-            <div className="signal-grid" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
+            <div className="mosaic-grid" aria-hidden="true">
+              {heroMosaic.map((item, index) => (
+                <div key={`${item.title || item.alt}-${index}`} className={`mosaic-tile mosaic-tile-${item.type}`}>
+                  {item.type === "image" ? (
+                    <img src={item.src} alt={item.alt} />
+                  ) : (
+                    <div>
+                      <strong>{item.title}</strong>
+                      <span>{item.text}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
             <div className="hero-orbit hero-orbit-blue" aria-hidden="true" />
             <div className="hero-orbit hero-orbit-red" aria-hidden="true" />
             <div className="hero-orbit hero-orbit-yellow" aria-hidden="true" />
             <div className="panel-card">
-              <p className="panel-label">Current orientation</p>
-              <p className="panel-value">Researcher · Builder · Independent</p>
+              <p className="panel-label">{t.orientation}</p>
+              <p className="panel-value">{t.orientationValue}</p>
             </div>
             <div className="panel-card">
-              <p className="panel-label">Primary themes</p>
-              <p className="panel-value">
-                Multimodal evaluation · Quant methods · Infrastructure
-              </p>
+              <p className="panel-label">{t.themes}</p>
+              <p className="panel-value">{t.themesValue}</p>
             </div>
             <div className="hero-preview">
               <div className="hero-preview-heading">
-                <span>{featuredPreview.title}</span>
-                <p>{featuredPreview.subtitle}</p>
+                <span>{t.previewTitle}</span>
+                <p>{t.previewSubtitle}</p>
               </div>
               <article className="hero-preview-card">
                 <img
@@ -272,7 +361,7 @@ function App() {
                   alt="SocialOmni preview"
                 />
                 <div>
-                  <span>Research Highlight</span>
+                  <span>{t.heroCards[0]}</span>
                   <strong>SocialOmni</strong>
                 </div>
               </article>
@@ -282,7 +371,7 @@ function App() {
                   alt="Event-Anchored Frame Selection preview"
                 />
                 <div>
-                  <span>Latest Paper</span>
+                  <span>{t.heroCards[1]}</span>
                   <strong>Event-Anchored Frame Selection</strong>
                 </div>
               </article>
@@ -291,10 +380,10 @@ function App() {
         </div>
 
         <div className="fact-strip">
-          {quickFacts.map((item) => (
-            <div key={item.label} className="fact-item">
-              <span className="fact-label">{item.label}</span>
-              <span className="fact-value">{item.value}</span>
+          {factValues.map((value, index) => (
+            <div key={`${value}-${index}`} className="fact-item">
+              <span className="fact-label">{t.factLabels[index]}</span>
+              <span className="fact-value">{value}</span>
             </div>
           ))}
         </div>
@@ -303,8 +392,8 @@ function App() {
       <main>
         <section className="section section-directions">
           <div className="section-heading">
-            <p className="section-kicker">Directions</p>
-            <h2>Three threads define the work.</h2>
+            <p className="section-kicker">{t.directions}</p>
+            <h2>{t.directionsTitle}</h2>
           </div>
           <div className="direction-list">
             {directions.map((item) => (
@@ -323,32 +412,26 @@ function App() {
 
         <section className="section section-papers">
           <div className="section-heading">
-            <p className="section-kicker">Selected Publications</p>
-            <h2>Recent work and public research artifacts.</h2>
+            <p className="section-kicker">{t.papers}</p>
+            <h2>{t.papersTitle}</h2>
           </div>
           <article className="paper-feature">
             <div className="paper-feature-copy">
-              <p className="section-kicker">Research Highlight</p>
-              <h3>SocialOmni as a benchmark surface, not just a paper entry.</h3>
-              <p>
-                The project combines benchmark design, public dataset release,
-                and reproducible evaluation assets into one research-facing
-                interface. The emphasis is not only reporting results, but also
-                exposing how the benchmark is structured and how others can work
-                with it.
-              </p>
+              <p className="section-kicker">{t.researchHighlight}</p>
+              <h3>{t.highlightTitle}</h3>
+              <p>{t.highlightBody}</p>
               <div className="paper-feature-metrics">
                 <div>
                   <strong>2,000</strong>
-                  <span>Perception Samples</span>
+                  <span>{t.highlightMetrics[0]}</span>
                 </div>
                 <div>
                   <strong>209</strong>
-                  <span>Diagnostic Cases</span>
+                  <span>{t.highlightMetrics[1]}</span>
                 </div>
                 <div>
                   <strong>3</strong>
-                  <span>Social Interaction Axes</span>
+                  <span>{t.highlightMetrics[2]}</span>
                 </div>
               </div>
             </div>
@@ -404,8 +487,8 @@ function App() {
 
         <section className="section section-focus">
           <div className="section-heading">
-            <p className="section-kicker">Current Focus</p>
-            <h2>What I am working on now.</h2>
+            <p className="section-kicker">{t.currentFocus}</p>
+            <h2>{t.currentFocusTitle}</h2>
           </div>
           <div className="focus-list">
             {focus.map((item) => (
@@ -421,8 +504,8 @@ function App() {
 
         <section className="section section-connect">
           <div className="section-heading">
-            <p className="section-kicker">Connect</p>
-            <h2>Open channels for research and collaboration.</h2>
+            <p className="section-kicker">{t.connect}</p>
+            <h2>{t.connectTitle}</h2>
           </div>
           <div className="connect-grid">
             <a
@@ -436,7 +519,7 @@ function App() {
               </span>
               <div>
                 <strong>Google Scholar</strong>
-                <p>Publications, citations, and research record.</p>
+                <p>{t.scholarDesc}</p>
               </div>
             </a>
             <a
@@ -450,7 +533,7 @@ function App() {
               </span>
               <div>
                 <strong>GitHub</strong>
-                <p>Code, experiments, and implementation artifacts.</p>
+                <p>{t.githubDesc}</p>
               </div>
             </a>
             <a className="connect-item" href="mailto:alexisty233@gmail.com">
@@ -458,8 +541,8 @@ function App() {
                 <Icon type="mail" />
               </span>
               <div>
-                <strong>Email</strong>
-                <p>Direct contact for research, projects, and collaboration.</p>
+                <strong>{t.nav.email}</strong>
+                <p>{t.emailDesc}</p>
               </div>
             </a>
           </div>
